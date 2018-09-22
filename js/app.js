@@ -32,6 +32,7 @@ Enemy.prototype.render = function() {
 const lane1 = 60;
 const lane2 = 143;
 const lane3 = 226;
+const lane4 = 309;
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -39,7 +40,9 @@ const lane3 = 226;
 class Player {
 
     constructor() {
-
+        this.x = 303;
+        this.y = lane4;
+        this.sprite = 'images/char-boy.png';
     }
 
     update() {
@@ -47,11 +50,19 @@ class Player {
     }
 
     render() {
-
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
-    handleInput() {
-
+    handleInput(direction) {
+        if (direction === 'left') {
+            this.x = this.x - 101;
+        } else if (direction === 'up') {
+            this.y = this.y - 83;
+        } else if (direction === 'right') {
+            this.x = this.x + 101;
+        } else if (direction === 'down') {
+            this.y = this.y + 83;
+        }
     }
 
 }
@@ -61,7 +72,7 @@ class Player {
 // Place the player object in a variable called player
 
 
-let enemyOne    = new Enemy(-100, lane1, 120);
+let enemyOne    = new Enemy(-101, lane1, 120);
 let enemyTwo    = new Enemy(-300, lane2, 180);
 let enemyThree  = new Enemy(-200, lane3, 160);
 
