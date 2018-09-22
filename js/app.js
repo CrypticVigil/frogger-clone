@@ -16,10 +16,17 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if ( this.x < 500 ) {
-        this.x = this.x + (this.speed * dt);
+    if ( this.x < 800 ) {
+        this.x = Math.floor(this.x + (this.speed * dt));
     } else {
-        this.x = -100;
+        this.x = -200;
+    }
+
+    if (    this.x + 70 >= player.x &&
+            this.x - 70 <= player.x && 
+            this.y == player.y ) {
+        player.x = 303;
+        player.y = lane5;
     }
     
 };
@@ -33,6 +40,7 @@ const lane1 = 60;
 const lane2 = 143;
 const lane3 = 226;
 const lane4 = 309;
+const lane5 = 392;
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -41,12 +49,12 @@ class Player {
 
     constructor() {
         this.x = 303;
-        this.y = lane4;
+        this.y = lane5;
         this.sprite = 'images/char-boy.png';
     }
 
     update() {
-
+        
     }
 
     render() {
@@ -55,14 +63,31 @@ class Player {
 
     handleInput(direction) {
         if (direction === 'left') {
-            this.x = this.x - 101;
+            if (this.x > 50) {
+                this.x = this.x - 101;
+            }
         } else if (direction === 'up') {
-            this.y = this.y - 83;
+            if (this.y > 50) {
+                this.y = this.y - 83;
+            }
         } else if (direction === 'right') {
-            this.x = this.x + 101;
+            if (this.x < 600) {
+                this.x = this.x + 101;
+            }
         } else if (direction === 'down') {
-            this.y = this.y + 83;
+            if (this.y < 350){
+                this.y = this.y + 83;
+            }
         }
+
+        if ( player.y < 50 ) {
+            setTimeout( function() {
+                player.x = 303;
+                player.y = lane5;
+            }, 1000)
+            
+        }
+
     }
 
 }
@@ -71,12 +96,18 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
+let en0 = new Enemy(-200, lane1, 300);
+let en1 = new Enemy(303, lane1, 250);
+let en2 = new Enemy(-300, lane1, 200);
+let en3 = new Enemy(-500, lane2, 210);
+let en4 = new Enemy(-300, lane2, 280);
+let en5 = new Enemy(505, lane2, 260);
+let en6 = new Enemy(-200, lane3, 270);
+let en7 = new Enemy(404, lane3, 220);
+let en8 = new Enemy(-300, lane4, 290);
+let en9 = new Enemy(606, lane4, 230);
 
-let enemyOne    = new Enemy(-101, lane1, 120);
-let enemyTwo    = new Enemy(-300, lane2, 180);
-let enemyThree  = new Enemy(-200, lane3, 160);
-
-let allEnemies = [enemyOne, enemyTwo, enemyThree];
+let allEnemies = [en0, en1, en2, en3, en4, en5, en6, en7, en8, en9];
 
 let player = new Player;
 
