@@ -36,6 +36,8 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// I defined the y coordinates as variables 
+// so they would be easier to remember
 const lane1 = 60;
 const lane2 = 143;
 const lane3 = 226;
@@ -54,7 +56,7 @@ class Player {
     }
 
     update() {
-        
+        // I didn't end up doing anything with this function.
     }
 
     render() {
@@ -84,8 +86,11 @@ class Player {
             setTimeout( function() {
                 player.x = 303;
                 player.y = lane5;
-            }, 1000)
-            
+                document.getElementById('modal').style.visibility = 'visible';
+            }, 800);
+            setTimeout( function() {
+                document.getElementById('modal').style.visibility = 'hidden';
+            }, 4000);
         }
 
     }
@@ -96,12 +101,12 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-let en0 = new Enemy(-200, lane1, 300);
-let en1 = new Enemy(303, lane1, 250);
-let en2 = new Enemy(-300, lane1, 200);
-let en3 = new Enemy(-500, lane2, 210);
-let en4 = new Enemy(-300, lane2, 280);
-let en5 = new Enemy(505, lane2, 260);
+let en0 = new Enemy(-200, lane1, 350);
+let en1 = new Enemy(300, lane1, 250);
+let en2 = new Enemy(-300, lane1, 250);
+let en3 = new Enemy(-300, lane2, 220);
+let en4 = new Enemy(-300, lane2, 320);
+let en5 = new Enemy(400, lane2, 220);
 let en6 = new Enemy(-200, lane3, 270);
 let en7 = new Enemy(404, lane3, 220);
 let en8 = new Enemy(-300, lane4, 290);
